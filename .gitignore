@@ -1,0 +1,5 @@
+# herdr writes logs, sockets and session state next to its config; track only the config.
+home/herdr/*
+!home/herdr/config.toml
+
+*.bak-*

@@ -1,0 +1,6 @@
+{
+  "statusLine": {
+    "type": "command",
+    "command": "node \"__DOTFILES__/home/claude/statusline.js\""
+  }
+}

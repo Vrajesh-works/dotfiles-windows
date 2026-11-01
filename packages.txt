@@ -1,0 +1,14 @@
+# winget package IDs installed by install.ps1 (one per line, # for comments).
+# Find IDs with: winget search <name>
+# Installed outside winget by install.ps1: Hack Nerd Font, herdr, Claude Code, Node (only if missing).
+
+Git.Git                    # git (also used by lazy.nvim to fetch plugins)
+Microsoft.PowerShell       # PowerShell 7: modern PSReadLine with inline history suggestions
+wez.wezterm                # terminal emulator
+Neovim.Neovim              # editor
+Starship.Starship          # prompt
+BurntSushi.ripgrep.MSVC    # rg: fast search (Snacks grep picker)
+sharkdp.fd                 # fd: fast find (Snacks file picker)
+junegunn.fzf               # fuzzy finder
+jqlang.jq                  # json on the command line
+JesseDuffield.lazygit      # git TUI
