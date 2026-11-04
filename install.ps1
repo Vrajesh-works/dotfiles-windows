@@ -159,6 +159,28 @@ if ($SkipPackages) {
   elseif ($DryRun) { Info '[dry-run] would run Claude Code installer (https://claude.ai/install.ps1)' }
   else { Invoke-RestMethod 'https://claude.ai/install.ps1' | Invoke-Expression; Refresh-Path }
 
+  # Agent fleet tooling (kunchenguid): treehouse worktree pool, no-mistakes push gate, firstmate.
+  if (Has 'treehouse') { Info 'ok      treehouse' }
+  elseif ($DryRun) { Info '[dry-run] would run treehouse installer' }
+  else { Invoke-RestMethod 'https://kunchenguid.github.io/treehouse/install.ps1' | Invoke-Expression; Refresh-Path }
+
+  if (Has 'no-mistakes') { Info 'ok      no-mistakes' }
+  elseif ($DryRun) { Info '[dry-run] would run no-mistakes installer' }
+  else { Invoke-RestMethod 'https://raw.githubusercontent.com/kunchenguid/no-mistakes/main/docs/install.ps1' | Invoke-Expression; Refresh-Path }
+
+  # npm CLIs firstmate's bootstrap requires (installed into the active node's global prefix).
+  foreach ($axi in 'gh-axi', 'chrome-devtools-axi', 'tasks-axi', 'quota-axi', 'lavish-axi') {
+    if (Has $axi) { Info "ok      $axi"; continue }
+    if ($DryRun) { Info "[dry-run] would npm install -g $axi"; continue }
+    & npm install -g $axi
+    if ($axi -in 'gh-axi', 'chrome-devtools-axi', 'lavish-axi') { & $axi setup hooks }
+  }
+
+  $firstmate = Join-Path $HOME '.agents\firstmate'
+  if (Test-Path (Join-Path $firstmate '.git')) { Info 'ok      firstmate' }
+  elseif ($DryRun) { Info "[dry-run] would clone firstmate to $firstmate" }
+  else { & git clone https://github.com/kunchenguid/firstmate $firstmate }
+
   # Hack Nerd Font, installed per-user (no admin) from the official Nerd Fonts release.
   $fontKey = 'HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Fonts'
   $userFonts = @((Get-ItemProperty $fontKey -ErrorAction SilentlyContinue).PSObject.Properties.Name)

@@ -1,6 +1,7 @@
 # winget package IDs installed by install.ps1 (one per line, # for comments).
 # Find IDs with: winget search <name>
-# Installed outside winget by install.ps1: Hack Nerd Font, herdr, Claude Code, Node (only if missing).
+# Installed outside winget by install.ps1: Hack Nerd Font, herdr, Claude Code, Node (only if missing),
+# treehouse, no-mistakes, firstmate (git clone to ~/.agents/firstmate) and its *-axi npm CLIs.
 
 Git.Git                    # git (also used by lazy.nvim to fetch plugins)
 Microsoft.PowerShell       # PowerShell 7: modern PSReadLine with inline history suggestions
